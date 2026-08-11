@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import CaesarCipher from './tools/CaesarCipher';
 import PasswordChecker from './tools/PasswordChecker';
-import './App.css'; // السطر ده مهم جداً لاستدعاء التصميم
+import KeyboardFixer from './tools/KeyboardFixer'; // 1. استدعينا الأداة الجديدة هنا
+import './App.css'; 
 
 export default function App() {
   const [activeTool, setActiveTool] = useState("caesar");
 
-  // الألوان اللي لسه محتاجينها للزراير التفاعلية
   const colors = {
     primary: '#3b82f6',
     textMuted: '#94a3b8',
@@ -70,6 +70,28 @@ export default function App() {
               🔒 Password Checker
             </button>
           </li>
+          {/* 2. الزرار الجديد بتاع مصحح الكيبورد */}
+          <li>
+            <button 
+              onClick={() => setActiveTool("keyboard")}
+              style={{ 
+                width: '100%', 
+                padding: '14px 20px', 
+                cursor: 'pointer', 
+                backgroundColor: activeTool === "keyboard" ? colors.primary : 'transparent', 
+                color: activeTool === "keyboard" ? '#fff' : colors.textMuted, 
+                border: `1px solid ${activeTool === "keyboard" ? colors.primary : colors.border}`, 
+                borderRadius: '10px', 
+                textAlign: 'left',
+                fontSize: '16px',
+                fontWeight: '600',
+                transition: 'all 0.3s ease',
+                boxShadow: activeTool === "keyboard" ? '0 4px 15px rgba(59, 130, 246, 0.4)' : 'none'
+              }}
+            >
+              ⌨️ Keyboard Fixer
+            </button>
+          </li>
         </ul>
       </div>
 
@@ -77,6 +99,8 @@ export default function App() {
       <div className="main-content">
         {activeTool === "caesar" && <CaesarCipher />}
         {activeTool === "password" && <PasswordChecker />} 
+        {/* 3. عرض الأداة لما المتغير يكون keyboard */}
+        {activeTool === "keyboard" && <KeyboardFixer />} 
       </div>
 
     </div>
