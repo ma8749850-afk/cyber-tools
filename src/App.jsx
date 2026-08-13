@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import CaesarCipher from './tools/CaesarCipher';
 import PasswordChecker from './tools/PasswordChecker';
 import KeyboardFixer from './tools/KeyboardFixer';
-import MorseTranslator from './tools/MorseTranslator'; // 1. استدعاء مورس
+import MorseTranslator from './tools/MorseTranslator';
+import HashGenerator from './tools/HashGenerator'; // 1. استدعاء أداة الهاش
 import './App.css'; 
 
 export default function App() {
@@ -43,10 +44,15 @@ export default function App() {
               ⌨️ Keyboard Fixer
             </button>
           </li>
-          {/* 2. زرار مترجم مورس */}
           <li>
             <button onClick={() => setActiveTool("morse")} style={{ width: '100%', padding: '14px 20px', cursor: 'pointer', backgroundColor: activeTool === "morse" ? colors.primary : 'transparent', color: activeTool === "morse" ? '#fff' : colors.textMuted, border: `1px solid ${activeTool === "morse" ? colors.primary : colors.border}`, borderRadius: '10px', textAlign: 'left', fontSize: '16px', fontWeight: '600', transition: 'all 0.3s ease', boxShadow: activeTool === "morse" ? '0 4px 15px rgba(59, 130, 246, 0.4)' : 'none' }}>
               📻 Morse Translator
+            </button>
+          </li>
+          {/* 2. زرار أداة الهاش الجديد */}
+          <li>
+            <button onClick={() => setActiveTool("hash")} style={{ width: '100%', padding: '14px 20px', cursor: 'pointer', backgroundColor: activeTool === "hash" ? colors.primary : 'transparent', color: activeTool === "hash" ? '#fff' : colors.textMuted, border: `1px solid ${activeTool === "hash" ? colors.primary : colors.border}`, borderRadius: '10px', textAlign: 'left', fontSize: '16px', fontWeight: '600', transition: 'all 0.3s ease', boxShadow: activeTool === "hash" ? '0 4px 15px rgba(59, 130, 246, 0.4)' : 'none' }}>
+              🧬 Hash Generator
             </button>
           </li>
         </ul>
@@ -56,8 +62,9 @@ export default function App() {
         {activeTool === "caesar" && <CaesarCipher />}
         {activeTool === "password" && <PasswordChecker />} 
         {activeTool === "keyboard" && <KeyboardFixer />} 
-        {/* 3. عرض مورس */}
         {activeTool === "morse" && <MorseTranslator />} 
+        {/* 3. عرض أداة الهاش */}
+        {activeTool === "hash" && <HashGenerator />} 
       </div>
 
     </div>
