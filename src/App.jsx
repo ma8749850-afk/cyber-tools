@@ -4,6 +4,7 @@ import PasswordChecker from './tools/PasswordChecker';
 import KeyboardFixer from './tools/KeyboardFixer';
 import MorseTranslator from './tools/MorseTranslator';
 import HashGenerator from './tools/HashGenerator'; // 1. استدعاء أداة الهاش
+import Base64Tool from './tools/Base64Tool';
 import './App.css'; 
 
 export default function App() {
@@ -55,6 +56,11 @@ export default function App() {
               🧬 Hash Generator
             </button>
           </li>
+          <li>
+            <button onClick={() => setActiveTool("base64")} style={{ width: '100%', padding: '14px 20px', cursor: 'pointer', backgroundColor: activeTool === "base64" ? colors.primary : 'transparent', color: activeTool === "base64" ? '#fff' : colors.textMuted, border: `1px solid ${activeTool === "base64" ? colors.primary : colors.border}`, borderRadius: '10px', textAlign: 'left', fontSize: '16px', fontWeight: '600', transition: 'all 0.3s ease', boxShadow: activeTool === "base64" ? '0 4px 15px rgba(59, 130, 246, 0.4)' : 'none' }}>
+              🔄 Base64 Tool
+            </button>
+          </li>
         </ul>
       </div>
 
@@ -65,6 +71,7 @@ export default function App() {
         {activeTool === "morse" && <MorseTranslator />} 
         {/* 3. عرض أداة الهاش */}
         {activeTool === "hash" && <HashGenerator />} 
+        {activeTool === "base64" && <Base64Tool />}
       </div>
 
     </div>
